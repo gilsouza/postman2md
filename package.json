@@ -1,0 +1,26 @@
+{
+  "name": "postman2md",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gilsouza/postman2md.git"
+  },
+  "author": "Gilmar Souza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gilsouza/postman2md/issues"
+  },
+  "homepage": "https://github.com/gilsouza/postman2md#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "prettier": "^2.0.4"
+  }
+}

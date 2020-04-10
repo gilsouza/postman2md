@@ -1,0 +1,10 @@
+# IDE
+.DS_STORE
+.history
+
+# project
+docs
+examples
+
+# node
+node_modules
