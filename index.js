@@ -61,7 +61,7 @@ const queryToMarkdown = (query) => {
         markdown.push(`| ${key || ''} | ${value || ''} | ${description || ''} |`);
     });
 
-    return markdown.join('\n');
+    return markdown.join('\n\n');
 };
 
 const headersToMarkdown = (headers) => {
@@ -71,7 +71,7 @@ const headersToMarkdown = (headers) => {
         markdown.push(`| ${key || ''} | ${value || ''} | ${description || ''} | ${type || ''} |`);
     });
 
-    return markdown.join('\n');
+    return markdown.join('\n\n');
 };
 
 const parseRequest = (item, currentDir) => {
@@ -116,7 +116,7 @@ const parseRequest = (item, currentDir) => {
 
             const {
                 originalRequest: {
-                    url: { path },
+                    url: { path, query },
                 },
                 code,
                 status,
@@ -126,6 +126,13 @@ const parseRequest = (item, currentDir) => {
 
             if ((path || ['']).join() !== (originalPath || ['']).join())
                 markdown.push(`     **URL:** \`\`\`/${(path || ['']).join('/')}\`\`\`\n`);
+
+            if (query && query.length) {
+                markdown.push(
+                    `**Query Parameters:**\n\nYou can include the following parameters in a search request.\n`,
+                );
+                markdown.push(queryToMarkdown(query));
+            }
 
             // FIXME: Resolver alinhamento de tabulação para content
             markdown.push(`     **Code:** \`\`\`${code} ${status.toUpperCase()}\`\`\`\n`);
