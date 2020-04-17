@@ -61,7 +61,7 @@ const queryToMarkdown = (query) => {
         markdown.push(`| ${key || ''} | ${value || ''} | ${description || ''} |`);
     });
 
-    return markdown.join('\n\n');
+    return markdown.join('\n');
 };
 
 const headersToMarkdown = (headers) => {
@@ -97,6 +97,7 @@ const parseRequest = (item, currentDir) => {
     if (query && query.length) {
         markdown.push(`**Query Parameters:**\n\nYou can include the following parameters in a search request.\n`);
         markdown.push(queryToMarkdown(query));
+        markdown.push('\n');
     }
     if (header && header.length) {
         markdown.push(`**Headers**\n`);
@@ -125,18 +126,19 @@ const parseRequest = (item, currentDir) => {
             } = r;
 
             if ((path || ['']).join() !== (originalPath || ['']).join())
-                markdown.push(`     **URL:** \`\`\`/${(path || ['']).join('/')}\`\`\`\n`);
+                markdown.push(`**URL:** \`\`\`/${(path || ['']).join('/')}\`\`\`\n`);
 
             if (query && query.length) {
                 markdown.push(
                     `**Query Parameters:**\n\nYou can include the following parameters in a search request.\n`,
                 );
                 markdown.push(queryToMarkdown(query));
+                markdown.push('\n');
             }
 
             // FIXME: Resolver alinhamento de tabulação para content
-            markdown.push(`     **Code:** \`\`\`${code} ${status.toUpperCase()}\`\`\`\n`);
-            markdown.push(`     **Content:**\n\`\`\`${language}\n${body}\n\`\`\`\n`);
+            markdown.push(`**Code:** \`\`\`${code} ${status.toUpperCase()}\`\`\`\n`);
+            markdown.push(`**Content:**\n\`\`\`${language}\n${body}\n\`\`\`\n`);
         });
     }
 
